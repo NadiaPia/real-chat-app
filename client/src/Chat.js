@@ -1,6 +1,7 @@
 //import React from 'react';
 import { useState, useEffect } from "react";
 import PropTypes from 'prop-types';
+import ScrollToBottom from "react-scroll-to-bottom";
 
 
 //React;
@@ -19,6 +20,7 @@ function Chat(props) {
             };
             await props.socket.emit("send_message", messageData);
             setMessageList((list) => [...list, messageData]); //to receive also your own messages
+            setCurrentMessage("");
         }
     };
 
@@ -37,24 +39,27 @@ function Chat(props) {
         <div className="chat-window">
             <div className="chat-header">Live Chat</div>
             <div className="chat-body">
-                {messageList.map((messageContent, i) => {
-                    return (
-                        <div key={i} className="message" id={props.username === messageContent.author ? "you" : "other"}>
-                            <div className="message-content">
-                                <p>{messageContent.message}</p>
+                <ScrollToBottom className="message-container">
+                    {messageList.map((messageContent, i) => {
+                        return (
+                            <div key={i} className="message" id={props.username === messageContent.author ? "you" : "other"}>
+                                <div className="message-content">
+                                    <p>{messageContent.message}</p>
+                                </div>
+                                <div className="message-meta">
+                                    <p id="time">{messageContent.time}</p>
+                                    <p id="author">{messageContent.author}</p>
+                                </div>
                             </div>
-                            <div className="message-meta">
-                                <p id="time">{messageContent.time}</p>
-                                <p id="author">{messageContent.author}</p>
-                            </div>
-                        </div>
-                    );
-                })}
+                        );
+                    })}
+                </ScrollToBottom>
             </div>
             <div className="chat-footer">
                 <input
                     type="text"
                     placeholder='hey...'
+                    value={currentMessage}
                     onChange={(event) => {
                         setCurrentMessage(event.target.value);
                     }}
