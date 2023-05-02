@@ -37,7 +37,9 @@ function Chat(props) {
 
     return (
         <div className="chat-window">
-            <div className="chat-header">Live Chat</div>
+            <div className="chat-header">
+                <p>Live Chat</p>
+            </div>
             <div className="chat-body">
                 <ScrollToBottom className="message-container">
                     {messageList.map((messageContent, i) => {
