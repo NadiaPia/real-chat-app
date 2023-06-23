@@ -1,3 +1,29 @@
+
+# real-chat-app
+
+## Overview
+
+ This is an application that allows users to communicate with each other in real time.
+
+!["Chat"]("")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
